@@ -5,12 +5,16 @@ import { AppComponent } from './app.component';
 import { StudentComponent } from './students/students.component';
 import { TeacherComponent } from './teachers/teachers.component';
 import { AppRoutingModule } from './app-routing.module';
+import { ProfileComponent } from './profile/profile.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     StudentComponent,
-    TeacherComponent
+    TeacherComponent,
+    ProfileComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
