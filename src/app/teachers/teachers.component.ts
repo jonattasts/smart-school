@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./teachers.component.css']
 })
 export class TeacherComponent implements OnInit {
+  public titulo = 'Professores';
+
   public teachers = [
     {name:"Pedro"},
     {name:"Silvia"},
