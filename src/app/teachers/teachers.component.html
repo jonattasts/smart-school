@@ -3,7 +3,7 @@
     <div *ngIf="teacherSelected">
         <div class="d-flex justify-content-between">
             <div class="">
-                <app-titulo [titulo]="'Professor(a) selecionado(a): ' + teacherSelected"></app-titulo>
+                <app-titulo [titulo]="'Professor(a) selecionado(a): ' + teacherSelected.name"></app-titulo>
             </div>
             <div class="mt-2">
                 <button class="btn btn-outline-warning" (click)="voltar()">Lista de professores</button>
@@ -13,16 +13,18 @@
         <form>
             <div class="form-group col-md-6 mb-4">
                 <label for="name" class="mb-2">Nome</label>
-                <input type="text" class="form-control" id="name" aria-describedby="nameHelp">
+                <input type="text" class="form-control" id="name" aria-describedby="nameHelp"
+                    value="{{teacherSelected.name}}">
             </div>
-            <div class="form-group col-md-6 mb-4">
+            <div class=" form-group col-md-6 mb-4">
                 <label for="discipline" class="mb-2">Disciplina</label>
-                <input type="discipline" class="form-control" id="discipline" aria-describedby="disciplineHelp">
+                <input type="discipline" class="form-control" id="discipline" aria-describedby="disciplineHelp"
+                    value="{{teacherSelected.discipline}}">
             </div>
         </form>
     </div>
 
-    <div *ngIf="!teacherSelected">
+    <div *ngIf=" !teacherSelected">
         <app-titulo [titulo]="titulo"></app-titulo>
 
         <table class="table table-hover">
