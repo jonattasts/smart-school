@@ -1,5 +1,9 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 
 import { AppComponent } from './app.component';
 import { StudentComponent } from './students/students.component';
@@ -8,10 +12,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { ProfileComponent } from './profile/profile.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TituloComponent } from './titulo/titulo.component';
-import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     AppRoutingModule,
     BrowserAnimationsModule,
     BsDropdownModule.forRoot(),
-    NgbModule
+    NgbModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

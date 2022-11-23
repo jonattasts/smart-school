@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Teacher } from '../models/teacher';
 
 @Component({
@@ -7,8 +8,9 @@ import { Teacher } from '../models/teacher';
   styleUrls: ['./teachers.component.css']
 })
 export class TeacherComponent implements OnInit {
-  public titulo = 'Professores';
   public teacherSelected: Teacher;
+  public teacherForm: FormGroup;
+  public titulo = 'Professores';
 
   public teachers = [
     { id: 1, name: "Pedro", discipline: "Português" },
@@ -18,13 +20,28 @@ export class TeacherComponent implements OnInit {
     { id: 5, name: "Lazaro", discipline: "Programação" }
   ]
 
-  constructor() { }
+  constructor(private formBuilder: FormBuilder) {
+    this.createForm();
+  }
 
   ngOnInit(): void {
   }
 
+  private createForm() {
+    this.teacherForm = this.formBuilder.group({
+      name: ['', Validators.required],
+      discipline: ['', Validators.required],
+    });
+  }
+
+  public submit() {
+    console.log(this.teacherForm.value);
+  }
+
   public teacherSelect(teacher: Teacher) {
     this.teacherSelected = teacher;
+    this.teacherForm.patchValue(teacher);
+
   }
 
   public voltar() {
