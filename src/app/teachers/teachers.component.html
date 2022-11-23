@@ -1,9 +1,8 @@
-<div class="mt-2">
-
-    <div *ngIf="teacherSelected">
+<div class="row mt-2">
+    <div class="col-md-6" *ngIf="teacherSelected">
         <div class="d-flex justify-content-between">
             <div class="">
-                <app-titulo [titulo]="'Professor(a) selecionado(a): ' + teacherSelected.name"></app-titulo>
+                <app-titulo [titulo]="'Cód. Professor: ' + teacherSelected.id"></app-titulo>
             </div>
             <div class="mt-2">
                 <button class="btn btn-outline-danger" (click)="voltar()">
@@ -26,7 +25,7 @@
         </form>
     </div>
 
-    <div *ngIf=" !teacherSelected">
+    <div [ngClass]="{'col-md-6' :teacherSelected, 'col-md-12':!teacherSelected}">
         <app-titulo [titulo]="titulo"></app-titulo>
 
         <table class="table table-hover">
@@ -47,4 +46,5 @@
             </tbody>
         </table>
     </div>
+
 </div>

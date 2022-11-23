@@ -14,8 +14,10 @@ export class StudentComponent implements OnInit {
     { id: 1, name: "Joao", lastName: "Santos", phone: 33225566 },
     { id: 2, name: "Paulo", lastName: "Silva", phone: 33225566 },
     { id: 3, name: "Maria", lastName: "Ferreira", phone: 33225566 },
-    { id: 4, name: "Julia", lastName: "Olvieira", phone: 33225566 },
-    { id: 5, name: "Mariana", lastName: "Melo", phone: 33225566 }
+    { id: 4, name: "Julia", lastName: "Souza", phone: 33225566 },
+    { id: 5, name: "Paula", lastName: "Costa", phone: 33225566 },
+    { id: 6, name: "Carla", lastName: "Olvieira", phone: 33225566 },
+    { id: 7, name: "Fernanda", lastName: "Melo", phone: 33225566 }
   ];
 
   constructor() { }

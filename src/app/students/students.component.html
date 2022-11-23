@@ -1,8 +1,8 @@
-<div class="mt-2">
-    <div *ngIf="studentSelected">
+<div class="row mt-2">
+    <div class="col-md-6" *ngIf="studentSelected">
         <div class="d-flex justify-content-between">
             <div class="">
-                <app-titulo [titulo]="'Aluno(a) selecionado(a): ' + studentSelected.name"></app-titulo>
+                <app-titulo [titulo]="'Cód. Aluno: ' + studentSelected.id"></app-titulo>
             </div>
             <div class="mt-2">
                 <button class="btn btn-outline-danger" (click)="voltar()">
@@ -12,17 +12,17 @@
         </div>
 
         <form>
-            <div class="form-group col-md-6 mb-4">
+            <div class="form-group mb-4">
                 <label for="name" class="mb-2">Nome</label>
                 <input type="text" class="form-control" id="name" aria-describedby="nameHelp"
                     value="{{studentSelected.name}}">
             </div>
-            <div class="form-group col-md-6 mb-4">
+            <div class="form-group mb-4">
                 <label for="lastName" class="mb-2">Sobrenome</label>
                 <input type="lastName" class="form-control" id="lastName" aria-describedby="lastNameHelp"
                     value="{{studentSelected.lastName}}">
             </div>
-            <div class="form-group col-md-6 mb-4">
+            <div class="form-group mb-4">
                 <label for="phone" class="mb-2">Telefone</label>
                 <input type="text" class="form-control" id="phone" aria-describedby="phoneHelp"
                     value="{{studentSelected.phone}}">
@@ -30,7 +30,7 @@
         </form>
     </div>
 
-    <div *ngIf="!studentSelected">
+    <div [ngClass]="{'col-md-6' :studentSelected, 'col-md-12':!studentSelected}">
         <app-titulo [titulo]="titulo"></app-titulo>
 
         <table class="table table-hover">
