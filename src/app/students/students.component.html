@@ -42,7 +42,7 @@
                     <th scope="col">Nome</th>
                     <th scope="col">Sobrenome</th>
                     <th scope="col">telefone</th>
-                    <th scope="col">Ações</th>
+                    <th scope="col" *ngIf="showActions">Ações</th>
                 </tr>
             </thead>
 
@@ -52,15 +52,17 @@
                     <td>{{student.name}}</td>
                     <td>{{student.lastName}}</td>
                     <td>{{student.phone}}</td>
-                    <td>
-                        <button class="btn btn-outline-warning border-0 ml-4">
+                    <td *ngIf="showActions">
+                        <button title="Visualizar" class="btn btn-outline-warning border-0 ml-4"
+                            (click)="studentSelect(student)">
                             <i class="bi bi-info-circle"></i>
                         </button>
-                        <button class="btn btn-outline-primary border-0 ml-4" (click)="studentSelect(student)">
-                            <i class="bi bi-pencil"></i>
+                        <button title="Professores" class="btn btn-outline-primary border-0 ml-4"
+                            (click)="openModal(template)">
+                            <i class="bi bi-people"></i>
                         </button>
-                        <button class="btn btn-outline-danger border-0 ml-4">
-                            <i class="bi bi-trash3"></i>
+                        <button title="Desativar" class="btn btn-outline-danger border-0 ml-4">
+                            <i class="bi bi-person-slash"></i>
                         </button>
                     </td>
                 </tr>
@@ -68,3 +70,15 @@
         </table>
     </div>
 </div>
+
+<ng-template #template>
+    <div class="modal-header">
+        <h4 class="pull-left"></h4>
+        <button class="btn btn-outline-danger btn-sm pull-right" (click)="modalRef?.hide()">
+            <i class="bi bi-x-lg"></i>
+        </button>
+    </div>
+    <div class="modal-body">
+        <app-teachers [showActions]="false"></app-teachers>
+    </div>
+</ng-template>

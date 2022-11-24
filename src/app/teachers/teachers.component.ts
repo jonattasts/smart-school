@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, TemplateRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { Teacher } from '../models/teacher';
 
 @Component({
@@ -10,7 +11,11 @@ import { Teacher } from '../models/teacher';
 export class TeacherComponent implements OnInit {
   public teacherSelected: Teacher;
   public teacherForm: FormGroup;
+  public modalRef?: BsModalRef;
+
   public titulo = 'Professores';
+
+  @Input() showActions = true;
 
   public teachers = [
     { id: 1, name: "Pedro", discipline: "Português" },
@@ -20,7 +25,7 @@ export class TeacherComponent implements OnInit {
     { id: 5, name: "Lazaro", discipline: "Programação" }
   ]
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder, private modalService: BsModalService) {
     this.createForm();
   }
 
@@ -46,5 +51,9 @@ export class TeacherComponent implements OnInit {
 
   public voltar() {
     this.teacherSelected = null;
+  }
+
+  public openModal(template: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(template);
   }
 }
