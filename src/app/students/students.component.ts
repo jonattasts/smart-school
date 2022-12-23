@@ -1,3 +1,4 @@
+import { StudentService } from './../services/student.service';
 import { Component, Input, OnInit, TemplateRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
@@ -18,21 +19,22 @@ export class StudentComponent implements OnInit {
 
   @Input() showActions = true;
 
-  public students = [
-    { id: 1, name: "Joao", lastName: "Santos", phone: 33225566 },
-    { id: 2, name: "Paulo", lastName: "Silva", phone: 33225566 },
-    { id: 3, name: "Maria", lastName: "Ferreira", phone: 33225566 },
-    { id: 4, name: "Julia", lastName: "Souza", phone: 33225566 },
-    { id: 5, name: "Paula", lastName: "Costa", phone: 33225566 },
-    { id: 6, name: "Carla", lastName: "Olvieira", phone: 33225566 },
-    { id: 7, name: "Fernanda", lastName: "Melo", phone: 33225566 }
-  ];
+  public students: Array<Student>;
 
-  constructor(private formBuilder: FormBuilder, private modalService: BsModalService) {
+  constructor(private formBuilder: FormBuilder, private modalService: BsModalService, private studentService: StudentService) {
     this.createForm();
   }
 
   ngOnInit(): void {
+    this.loadStudents()
+  }
+
+  private async loadStudents() {
+    try {
+      this.students = await this.studentService.getAll().toPromise();
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   private createForm() {
