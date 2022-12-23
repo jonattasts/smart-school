@@ -14,7 +14,7 @@ export class StudentComponent implements OnInit {
   public studentForm: FormGroup;
   public modalRef?: BsModalRef;
 
-  public titulo = 'Alunos';
+  public title = 'Alunos';
 
   @Input() showActions = true;
 
