@@ -2,6 +2,7 @@ import { Component, Input, OnInit, TemplateRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { Teacher } from '../models/teacher';
+import { TeacherService } from '../services/teacher.service';
 
 @Component({
   selector: 'app-teachers',
@@ -13,40 +14,50 @@ export class TeacherComponent implements OnInit {
   public teacherForm: FormGroup;
   public modalRef?: BsModalRef;
 
-  public titulo = 'Professores';
+  public title = 'Professores';
 
   @Input() showActions = true;
 
-  public teachers = [
-    { id: 1, name: "Pedro", discipline: "Português" },
-    { id: 2, name: "Silvia", discipline: "Matemática" },
-    { id: 3, name: "Carlos", discipline: "Biologia" },
-    { id: 4, name: "Vilma", discipline: "História" },
-    { id: 5, name: "Lazaro", discipline: "Programação" }
-  ]
+  public teachers: Array<Teacher>;
 
-  constructor(private formBuilder: FormBuilder, private modalService: BsModalService) {
+  constructor(private formBuilder: FormBuilder, private modalService: BsModalService, private teacherService: TeacherService) {
     this.createForm();
   }
 
   ngOnInit(): void {
+    this.loadTeachers();
+  }
+
+  private async loadTeachers() {
+    try {
+      this.teachers = await this.teacherService.getAll().toPromise();
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   private createForm() {
     this.teacherForm = this.formBuilder.group({
+      id: [''],
       name: ['', Validators.required],
-      discipline: ['', Validators.required],
+      disciplines: ['', Validators.required],
     });
   }
 
   public submit() {
-    console.log(this.teacherForm.value);
+    this.teacherService.update(this.teacherForm.value).subscribe(
+      () => {
+        this.loadTeachers();
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
 
   public teacherSelect(teacher: Teacher) {
     this.teacherSelected = teacher;
     this.teacherForm.patchValue(teacher);
-
   }
 
   public voltar() {
