@@ -11,15 +11,15 @@ import { Student } from '../models/student';
 })
 
 export class StudentComponent implements OnInit {
+  public title = 'Alunos';
+  public newStudent = false;
+
   public studentSelected: Student;
+  public students: Array<Student>;
   public studentForm: FormGroup;
   public modalRef?: BsModalRef;
 
-  public title = 'Alunos';
-
   @Input() showActions = true;
-
-  public students: Array<Student>;
 
   constructor(private formBuilder: FormBuilder, private modalService: BsModalService, private studentService: StudentService) {
     this.createForm();
@@ -47,26 +47,37 @@ export class StudentComponent implements OnInit {
   }
 
   public submit() {
-    this.studentService.update(this.studentForm.value).subscribe(
-      () => {
-        this.loadStudents();
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
+    if (this.newStudent) {
+
+    } else {
+      this.studentService.update(this.studentForm.value).subscribe(
+        () => {
+          this.loadStudents();
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+    }
   }
 
   public studentSelect(student: Student) {
     this.studentSelected = student;
     this.studentForm.patchValue(student);
+    this.newStudent = false;
   }
 
   public voltar() {
     this.studentSelected = null;
+    this.newStudent = false;
   }
 
   public openModal(template: TemplateRef<any>) {
     this.modalRef = this.modalService.show(template);
+  }
+
+  public handleNewStudent() {
+    this.studentForm.reset();
+    this.newStudent = true;
   }
 }

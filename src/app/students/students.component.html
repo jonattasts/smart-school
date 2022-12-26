@@ -1,8 +1,8 @@
 <div class="row mt-2">
-    <div class="col-md-6" *ngIf="studentSelected">
+    <div class="col-md-6 mb-4" *ngIf="studentSelected || newStudent">
         <div class="d-flex justify-content-between">
             <div class="">
-                <app-titulo [titulo]="'Cód. Aluno: ' + studentSelected.id"></app-titulo>
+                <app-titulo [titulo]="newStudent ? 'Novo aluno' :'Matrícula: ' + studentSelected.id"></app-titulo>
             </div>
             <div class="mt-2">
                 <button class="btn btn-outline-danger" (click)="voltar()">
@@ -28,12 +28,21 @@
 
             <hr>
 
-            <button class="btn btn-success" [disabled]="!studentForm.valid">Atualizar</button>
+            <button class="btn btn-success" [disabled]="!studentForm.valid">{{newStudent ? 'Cadastrar' :'Atualizar'}}</button>
         </form>
     </div>
 
-    <div [ngClass]="{'col-md-6' :studentSelected, 'col-md-12':!studentSelected}">
-        <app-titulo [titulo]="title"></app-titulo>
+    <div [ngClass]="{'col-md-6' :studentSelected || newStudent, 'col-md-12':!studentSelected && !newStudent}">
+        <div class="d-flex justify-content-between">
+            <div class="">
+                <app-titulo [titulo]="title"></app-titulo>
+            </div>
+            <div class="mt-1">
+                <button class="btn btn-outline-success" (click)="handleNewStudent()" *ngIf="showActions">
+                    <i class="bi bi-person-add"></i>
+                </button>
+            </div>
+        </div>
 
         <table class="table table-hover">
             <thead class="thead-light">
