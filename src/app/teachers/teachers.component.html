@@ -1,8 +1,8 @@
 <div class="row mt-2">
-    <div class="col-md-6" *ngIf="teacherSelected">
+    <div class="col-md-6 mb-4" *ngIf="teacherSelected || newTeacher">
         <div class="d-flex justify-content-between">
             <div class="">
-                <app-titulo [titulo]="'Cód. Professor: ' + teacherSelected.id"></app-titulo>
+                <app-titulo [titulo]="newTeacher ? 'Novo Professor' :'Matrícula: ' + teacherSelected.id"></app-titulo>
             </div>
             <div class="mt-2">
                 <button class="btn btn-outline-danger" (click)="voltar()">
@@ -16,17 +16,27 @@
                 <label for="name" class="mb-2">Nome</label>
                 <input type="text" class="form-control" id="name" formControlName="name">
             </div>
-            <div class=" form-group col-md-6 mb-4">
+            <!-- <div class=" form-group col-md-6 mb-4">
                 <label for="discipline" class="mb-2">Disciplina</label>
-                <input type="text" class="form-control" id="discipline" formControlName="discipline">
-            </div>
+                <input type="text" class="form-control" id="discipline" formControlName="disciplines">
+            </div> -->
 
-            <button class="btn btn-success" [disabled]="!teacherForm.valid">Atualizar</button>
+            <button class="btn btn-success" [disabled]="!teacherForm.valid">{{newTeacher ? 'Cadastrar'
+                :'Atualizar'}}</button>
         </form>
     </div>
 
-    <div [ngClass]="{'col-md-6' :teacherSelected, 'col-md-12':!teacherSelected}">
-        <app-titulo [titulo]="titulo"></app-titulo>
+    <div [ngClass]="{'col-md-6' :teacherSelected || newTeacher, 'col-md-12':!teacherSelected && !newTeacher}">
+        <div class="d-flex justify-content-between">
+            <div class="">
+                <app-titulo [titulo]="title"></app-titulo>
+            </div>
+            <div class="mt-1">
+                <button class="btn btn-outline-success" (click)="handleNewTeacher()" *ngIf="showActions">
+                    <i class="bi bi-person-add"></i>
+                </button>
+            </div>
+        </div>
 
         <table class="table table-hover">
             <thead class="thead-light">
@@ -42,7 +52,11 @@
                 <tr *ngFor="let teacher of teachers">
                     <td scope="row">{{teacher.id}}</td>
                     <td>{{teacher.name}}</td>
-                    <td>{{teacher.discipline}}</td>
+                    <td>
+                        <span *ngFor="let discipline of teacher.disciplines">
+                            {{discipline.name}}&nbsp;
+                        </span>
+                    </td>
                     <td *ngIf="showActions">
                         <button title="Visualizar" class="btn btn-outline-warning border-0 ml-4"
                             (click)="teacherSelect(teacher)">
@@ -60,16 +74,15 @@
             </tbody>
         </table>
     </div>
-</div>
 
-<ng-template #template>
-    <div class="modal-header">
-        <h4 class="pull-left"></h4>
-        <button class="btn btn-outline-danger btn-sm pull-right" (click)="modalRef?.hide()">
-            <i class="bi bi-x-lg"></i>
-        </button>
-    </div>
-    <div class="modal-body">
-        <app-students [showActions]="false"></app-students>
-    </div>
-</ng-template>
+    <ng-template #template>
+        <div class="modal-header">
+            <h4 class="pull-left"></h4>
+            <button class="btn btn-outline-danger btn-sm pull-right" (click)="modalRef?.hide()">
+                <i class="bi bi-x-lg"></i>
+            </button>
+        </div>
+        <div class="modal-body">
+            <app-students [showActions]="false"></app-students>
+        </div>
+    </ng-template>

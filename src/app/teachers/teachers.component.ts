@@ -10,15 +10,16 @@ import { TeacherService } from '../services/teacher.service';
   styleUrls: ['./teachers.component.css']
 })
 export class TeacherComponent implements OnInit {
+  public title = 'Professores';
+  public newTeacher = false;
+
   public teacherSelected: Teacher;
+  public teachers: Array<Teacher>;
   public teacherForm: FormGroup;
   public modalRef?: BsModalRef;
 
-  public title = 'Professores';
-
   @Input() showActions = true;
 
-  public teachers: Array<Teacher>;
 
   constructor(private formBuilder: FormBuilder, private modalService: BsModalService, private teacherService: TeacherService) {
     this.createForm();
@@ -45,26 +46,37 @@ export class TeacherComponent implements OnInit {
   }
 
   public submit() {
-    this.teacherService.update(this.teacherForm.value).subscribe(
-      () => {
-        this.loadTeachers();
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
+    if (this.newTeacher) {
+
+    } else {
+      this.teacherService.update(this.teacherForm.value).subscribe(
+        () => {
+          this.loadTeachers();
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+    }
   }
 
   public teacherSelect(teacher: Teacher) {
     this.teacherSelected = teacher;
     this.teacherForm.patchValue(teacher);
+    this.newTeacher = false;
   }
 
   public voltar() {
     this.teacherSelected = null;
+    this.newTeacher = false;
   }
 
   public openModal(template: TemplateRef<any>) {
     this.modalRef = this.modalService.show(template);
+  }
+
+  public handleNewTeacher() {
+    this.teacherForm.reset();
+    this.newTeacher = true;
   }
 }
