@@ -39,6 +39,7 @@ export class StudentComponent implements OnInit {
 
   private createForm() {
     this.studentForm = this.formBuilder.group({
+      id: [''],
       name: ['', Validators.required],
       lastName: ['', Validators.required],
       phone: ['', Validators.required],
@@ -46,7 +47,14 @@ export class StudentComponent implements OnInit {
   }
 
   public submit() {
-    console.log(this.studentForm.value);
+    this.studentService.update(this.studentForm.value).subscribe(
+      () => {
+        this.loadStudents();
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
 
   public studentSelect(student: Student) {
