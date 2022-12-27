@@ -73,7 +73,7 @@ export class TeacherComponent implements OnInit {
     this.newTeacher = false;
   }
 
-  public voltar() {
+  public close = () => {
     this.teacherSelected = null;
     this.newTeacher = false;
   }

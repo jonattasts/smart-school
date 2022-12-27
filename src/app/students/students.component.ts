@@ -77,7 +77,7 @@ export class StudentComponent implements OnInit {
     this.newStudent = false;
   }
 
-  public voltar() {
+  public close = () => {
     this.studentSelected = null;
     this.newStudent = false;
   }
@@ -86,7 +86,7 @@ export class StudentComponent implements OnInit {
     this.modalRef = this.modalService.show(template);
   }
 
-  public handleNewStudent() {
+  public handleNewStudent = () => {
     this.studentForm.reset();
     this.newStudent = true;
   }
