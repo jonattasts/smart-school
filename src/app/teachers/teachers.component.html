@@ -67,7 +67,7 @@
                         </app-generic-button>
 
                         <app-generic-button title="Deletar" buttonClass="btn btn-outline-danger border-0 ml-4"
-                            iconClass="bi bi-person-slash" [showActions]="showActions">
+                            iconClass="bi bi-person-slash" (click)="deleteTeacher(teacher.id)" [showActions]="showActions">
                         </app-generic-button>
                     </td>
                 </tr>

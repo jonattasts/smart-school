@@ -65,6 +65,17 @@ export class TeacherComponent implements OnInit {
     );
   }
 
+  public deleteTeacher(id: number) {
+    this.teacherService.delete(id).subscribe(
+      () => {
+        this.loadTeachers();
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
+
   public teacherSelect = (teacher: Teacher) => {
     this.teacherSelected = teacher;
     this.teacherForm.patchValue(teacher);
