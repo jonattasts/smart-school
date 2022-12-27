@@ -57,10 +57,11 @@ export class StudentComponent implements OnInit {
   }
 
   public submit() {
-    if (this.newStudent) {
+    const action = this.newStudent ? 'save' : 'update';
+    console.log(this.studentForm.value);
 
-    } else {
-      this.studentService.update(this.studentForm.value).subscribe(
+
+    this.studentService[action](this.studentForm.value).subscribe(
         () => {
           this.loadStudents();
         },
@@ -68,7 +69,6 @@ export class StudentComponent implements OnInit {
           console.log(error);
         }
       );
-    }
   }
 
   public studentSelect = (student: Student) => {
@@ -88,6 +88,8 @@ export class StudentComponent implements OnInit {
 
   public handleNewStudent = () => {
     this.studentForm.reset();
+    this.studentSelected = new Student();
+    this.studentForm.patchValue(this.studentSelected);
     this.newStudent = true;
   }
 }
