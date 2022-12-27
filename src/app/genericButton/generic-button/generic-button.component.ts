@@ -9,6 +9,7 @@ export class GenericButtonComponent implements OnInit {
   @Input() containerClass: string;
   @Input() buttonClass: string;
   @Input() iconClass: string;
+  @Input() title: string;
   @Input() showActions = true;
   @Input() handeClick: () => void
 
