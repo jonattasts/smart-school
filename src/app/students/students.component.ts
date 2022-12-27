@@ -58,17 +58,26 @@ export class StudentComponent implements OnInit {
 
   public submit() {
     const action = this.newStudent ? 'save' : 'update';
-    console.log(this.studentForm.value);
-
 
     this.studentService[action](this.studentForm.value).subscribe(
-        () => {
-          this.loadStudents();
-        },
-        (error) => {
-          console.log(error);
-        }
-      );
+      () => {
+        this.loadStudents();
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
+
+  public deleteStudent(id: number) {
+    this.studentService.delete(id).subscribe(
+      () => {
+        this.loadStudents();
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
 
   public studentSelect = (student: Student) => {
