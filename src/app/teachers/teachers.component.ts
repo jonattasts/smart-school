@@ -1,9 +1,12 @@
 import { Component, Input, OnInit, TemplateRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
-import { forceWait } from 'src/util/time-util';
+
+import { Discipline } from '../models/discipline';
 import { Teacher } from '../models/teacher';
 import { TeacherService } from '../services/teacher.service';
+
+import { forceWait } from 'src/util/time-util';
 
 @Component({
   selector: 'app-teachers',
@@ -48,14 +51,17 @@ export class TeacherComponent implements OnInit {
     this.teacherForm = this.formBuilder.group({
       id: [''],
       name: ['', Validators.required],
-      disciplines: [''],
+      disciplines: ['', Validators.required],
     });
   }
 
   public submit() {
     const action = this.newTeacher ? 'save' : 'update';
+    const teacher =  this.teacherForm.value as Teacher;
+    const discipline = new Discipline(this.teacherForm.value.disciplines)
+    teacher.disciplines = [discipline]
 
-    this.teacherService[action](this.teacherForm.value).subscribe(
+    this.teacherService[action](teacher).subscribe(
       () => {
         this.loadTeachers();
       },
