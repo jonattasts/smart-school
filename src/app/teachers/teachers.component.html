@@ -41,7 +41,7 @@
         </div>
 
         <table class="table table-hover">
-            <thead class="thead-light">
+            <thead class="thead-light" *ngIf="!showLoading">
                 <tr class="bg-light">
                     <th scope="col">#</th>
                     <th scope="col">Nome</th>
@@ -50,7 +50,7 @@
                 </tr>
             </thead>
 
-            <tbody>
+            <tbody *ngIf="!showLoading">
                 <tr *ngFor="let teacher of teachers">
                     <td scope="row">{{teacher.id}}</td>
                     <td>{{teacher.name}}</td>
