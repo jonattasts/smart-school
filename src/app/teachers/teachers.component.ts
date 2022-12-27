@@ -1,6 +1,7 @@
 import { Component, Input, OnInit, TemplateRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { forceWait } from 'src/util/time-util';
 import { Teacher } from '../models/teacher';
 import { TeacherService } from '../services/teacher.service';
 
@@ -12,6 +13,7 @@ import { TeacherService } from '../services/teacher.service';
 export class TeacherComponent implements OnInit {
   public title = 'Professores';
   public newTeacher = false;
+  public showLoading = false;
 
   public teacherSelected: Teacher;
   public teachers: Array<Teacher>;
@@ -31,7 +33,12 @@ export class TeacherComponent implements OnInit {
 
   private async loadTeachers() {
     try {
+      this.showLoading = true
+
+      await forceWait(750);
       this.teachers = await this.teacherService.getAll().toPromise();
+
+      this.showLoading = false
     } catch (error) {
       console.log(error);
     }

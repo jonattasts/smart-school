@@ -1,8 +1,11 @@
-import { StudentService } from './../services/student.service';
-import { Component, Input, OnInit, TemplateRef } from '@angular/core';
+import { Component, Input, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+
 import { Student } from '../models/student';
+import { LoadingComponent } from '../loading/loading/loading.component';
+import { StudentService } from './../services/student.service';
+import { forceWait } from 'src/util/time-util';
 
 @Component({
   selector: 'app-students',
@@ -13,6 +16,7 @@ import { Student } from '../models/student';
 export class StudentComponent implements OnInit {
   public title = 'Alunos';
   public newStudent = false;
+  public showLoading = false;
 
   public studentSelected: Student;
   public students: Array<Student>;
@@ -20,18 +24,24 @@ export class StudentComponent implements OnInit {
   public modalRef?: BsModalRef;
 
   @Input() showActions = true;
+  @ViewChild('loading', { static: false }) public loadingComponent: LoadingComponent;
 
   constructor(private formBuilder: FormBuilder, private modalService: BsModalService, private studentService: StudentService) {
     this.createForm();
   }
 
   ngOnInit(): void {
-    this.loadStudents()
+    this.loadStudents();
   }
 
   private async loadStudents() {
     try {
+      this.showLoading = true
+
+      await forceWait(750);
       this.students = await this.studentService.getAll().toPromise();
+
+      this.showLoading = false
     } catch (error) {
       console.log(error);
     }
