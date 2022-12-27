@@ -67,7 +67,7 @@ export class TeacherComponent implements OnInit {
     }
   }
 
-  public teacherSelect(teacher: Teacher) {
+  public teacherSelect = (teacher: Teacher) => {
     this.teacherSelected = teacher;
     this.teacherForm.patchValue(teacher);
     this.newTeacher = false;

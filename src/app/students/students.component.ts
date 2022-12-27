@@ -71,7 +71,7 @@ export class StudentComponent implements OnInit {
     }
   }
 
-  public studentSelect(student: Student) {
+  public studentSelect = (student: Student) => {
     this.studentSelected = student;
     this.studentForm.patchValue(student);
     this.newStudent = false;

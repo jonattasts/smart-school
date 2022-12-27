@@ -7,8 +7,8 @@
                 <app-titulo [titulo]="newTeacher ? 'Novo Professor' :'Matrícula: ' + teacherSelected.id"></app-titulo>
             </div>
 
-            <app-generic-button containerClass="mt-2" buttonClass="btn btn-outline-danger" iconClass="bi bi-x-lg"
-                [handleClick]="close" [showActions]="showActions">
+            <app-generic-button buttonClass="btn btn-outline-danger mt-2" iconClass="bi bi-x-lg" [handleClick]="close"
+                [showActions]="showActions">
             </app-generic-button>
         </div>
 
@@ -33,7 +33,7 @@
                 <app-titulo [titulo]="title"></app-titulo>
             </div>
 
-            <app-generic-button containerClass="mt-1" iconClass="bi bi-person-add" buttonClass="btn btn-outline-success"
+            <app-generic-button buttonClass="btn btn-outline-success mt-1" iconClass="bi bi-person-add"
                 [handleClick]="handleNewTeacher" [showActions]="showActions">
             </app-generic-button>
         </div>
@@ -58,17 +58,17 @@
                         </span>
                     </td>
                     <td *ngIf="showActions">
-                        <button title="Visualizar" class="btn btn-outline-warning border-0 ml-4"
-                            (click)="teacherSelect(teacher)">
-                            <i class="bi bi-info-circle"></i>
-                        </button>
-                        <button title="Professores" class="btn btn-outline-primary border-0 ml-4"
-                            (click)="openModal(template)">
-                            <i class="bi bi-people"></i>
-                        </button>
-                        <button title="Desativar" class="btn btn-outline-danger border-0 ml-4">
-                            <i class="bi bi-person-slash"></i>
-                        </button>
+                        <app-generic-button title="Visualizar" buttonClass="btn btn-outline-warning border-0 ml-4"
+                            iconClass="bi bi-info-circle" (click)="teacherSelect(teacher)" [showActions]="showActions">
+                        </app-generic-button>
+
+                        <app-generic-button title="Alunos" buttonClass="btn btn-outline-primary border-0 ml-4"
+                            iconClass="bi bi-people" (click)="openModal(template)" [showActions]="showActions">
+                        </app-generic-button>
+
+                        <app-generic-button title="Desativar" buttonClass="btn btn-outline-danger border-0 ml-4"
+                            iconClass="bi bi-person-slash" [showActions]="showActions">
+                        </app-generic-button>
                     </td>
                 </tr>
             </tbody>
