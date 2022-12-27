@@ -48,23 +48,21 @@ export class TeacherComponent implements OnInit {
     this.teacherForm = this.formBuilder.group({
       id: [''],
       name: ['', Validators.required],
-      disciplines: ['', Validators.required],
+      disciplines: [''],
     });
   }
 
   public submit() {
-    if (this.newTeacher) {
+    const action = this.newTeacher ? 'save' : 'update';
 
-    } else {
-      this.teacherService.update(this.teacherForm.value).subscribe(
-        () => {
-          this.loadTeachers();
-        },
-        (error) => {
-          console.log(error);
-        }
-      );
-    }
+    this.teacherService[action](this.teacherForm.value).subscribe(
+      () => {
+        this.loadTeachers();
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
 
   public teacherSelect = (teacher: Teacher) => {
@@ -84,6 +82,8 @@ export class TeacherComponent implements OnInit {
 
   public handleNewTeacher = () => {
     this.teacherForm.reset();
+    this.teacherSelected = new Teacher();
+    this.teacherForm.patchValue(this.teacherSelected);
     this.newTeacher = true;
   }
 }
