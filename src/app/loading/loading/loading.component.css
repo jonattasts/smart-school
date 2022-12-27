@@ -1,0 +1,19 @@
+.center-screen {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  margin-right: -50%;
+}
+
+.bg-loading {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(43, 42, 51, 0.138);
+}
+
+.text-center span {
+  font-weight: 600;
+}
