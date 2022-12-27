@@ -82,7 +82,7 @@ export class TeacherComponent implements OnInit {
     this.modalRef = this.modalService.show(template);
   }
 
-  public handleNewTeacher() {
+  public handleNewTeacher = () => {
     this.teacherForm.reset();
     this.newTeacher = true;
   }
