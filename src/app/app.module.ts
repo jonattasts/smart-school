@@ -17,6 +17,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { TituloComponent } from './titulo/titulo.component';
 import { LoadingComponent } from './loading/loading/loading.component';
+import { GenericButtonComponent } from './genericButton/generic-button/generic-button.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { LoadingComponent } from './loading/loading/loading.component';
     DashboardComponent,
     NavbarComponent,
     TituloComponent,
-    LoadingComponent
+    LoadingComponent,
+    GenericButtonComponent
   ],
   imports: [
     BrowserModule,
