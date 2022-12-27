@@ -1,3 +1,4 @@
+import { Student } from './../../models/student';
 import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
@@ -6,12 +7,11 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./generic-button.component.css']
 })
 export class GenericButtonComponent implements OnInit {
-  @Input() containerClass: string;
   @Input() buttonClass: string;
   @Input() iconClass: string;
   @Input() title: string;
   @Input() showActions = true;
-  @Input() handleClick: () => void
+  @Input() handleClick: (student?: Student) => void
 
   constructor() { }
 
