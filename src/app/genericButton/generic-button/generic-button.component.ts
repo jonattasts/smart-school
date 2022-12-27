@@ -11,7 +11,7 @@ export class GenericButtonComponent implements OnInit {
   @Input() iconClass: string;
   @Input() title: string;
   @Input() showActions = true;
-  @Input() handeClick: () => void
+  @Input() handleClick: () => void
 
   constructor() { }
 
