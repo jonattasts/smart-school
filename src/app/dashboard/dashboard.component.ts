@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AnimationItem } from 'lottie-web';
+import { AnimationOptions } from 'ngx-lottie';
 
 @Component({
   selector: 'app-dashboard',
@@ -8,9 +10,16 @@ import { Component, OnInit } from '@angular/core';
 export class DashboardComponent implements OnInit {
   public titulo = 'Dashboard';
 
+  public options: AnimationOptions = {
+    path: '../assets/lottie/school-animation.json',
+  };
+
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  public onAnimate(animationItem: AnimationItem): void {
+    console.log(animationItem);
+  }
 }
