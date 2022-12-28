@@ -1,27 +1,33 @@
-# SmartSchool
+# Smart School
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.18.
+O Smart School é uma aplicação simples desenvolvida como resultado de estudos do framework [Angular](https://github.com/angular). O objtivo do App é exibir e permitir o cadastro de alunos e professores. Essa aplicação  utiliza um banco de dados local SQLite, por isso os dados cadastrados são salvos e obtidos através da API Rest desenvolvida em ASP.Net e Entity Framework.
 
-## Development server
+## Features
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+• Cadastrar um aluno <br>
+• Editar dados do aluno <br>
+• Cadastrar um professor <br>
+• Editar dados do professor <br>
 
-## Code scaffolding
+## View screens
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Dashboard Screen
 
-## Build
+<img src="src/assets/dashboard.png" />
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Student Screen
 
-## Running unit tests
+<img src="src/assets/students-list.png"/>  
+<img src="src/assets/student-edit.png"/>
+<img src="src/assets/student-register.png"/>
+<img src="src/assets/students-teachers.png"/>
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Teacher Screen
+<img src="src/assets/teachers-list.png"/>  
+<img src="src/assets/teacher-edit.png"/>
+<img src="src/assets/teacher-register.png"/>
+<img src="src/assets/teachers-students.png"/>
 
-## Running end-to-end tests
+## App
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+<img src="src/assets/SmartSchool.gif" />
