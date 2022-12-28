@@ -20,6 +20,12 @@ export class TeacherService {
     return this.http.get<Teacher>(`${this.serviceUrl}/${id}`);
   }
 
+  public getByDisciplineName(disciplineName: string): Observable<Teacher> {
+    const webApiSuffix: string = 'ByDisciplineName';
+
+    return this.http.get<Teacher>(`${this.serviceUrl}/${webApiSuffix}/${disciplineName}`);
+  }
+
   public save(teacher: Teacher) {
     return this.http.post(`${this.serviceUrl}`, teacher);
   }
