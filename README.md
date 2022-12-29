@@ -10,19 +10,18 @@ O Smart School é uma aplicação simples desenvolvida como resultado de estudos
 • Editar dados do professor <br>
 
 ## View screens
-
-## Home Screen
+### • Home
 
 <img src="src/assets/dashboard.png" />
 
-## Student Screen
+### • Student
 
 <img src="src/assets/students-list.png"/>  
 <img src="src/assets/student-edit.png"/>
 <img src="src/assets/student-register.png"/>
 <img src="src/assets/students-teachers.png"/>
 
-## Teacher Screen
+### • Teacher
 <img src="src/assets/teachers-list.png"/>  
 <img src="src/assets/teacher-edit.png"/>
 <img src="src/assets/teacher-register.png"/>
