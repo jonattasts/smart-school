@@ -11,7 +11,7 @@ O Smart School é uma aplicação simples desenvolvida como resultado de estudos
 
 ## View screens
 
-## Dashboard Screen
+## Home Screen
 
 <img src="src/assets/dashboard.png" />
 
