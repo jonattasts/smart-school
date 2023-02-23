@@ -9,7 +9,7 @@ O Smart School é uma aplicação simples desenvolvida como resultado de estudos
 • Cadastrar um professor <br>
 • Editar dados do professor <br>
 
-## View screens
+## Screens
 ### • Home
 
 <img src="src/assets/dashboard.png" />
